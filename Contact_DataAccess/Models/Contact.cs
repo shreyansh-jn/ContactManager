@@ -32,6 +32,8 @@ namespace Contact_DataAccess.Models
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Phone number is invalid")]
         public string Phone { get; set; }
 
+        //Status means that the user is marked deleted or not
+        //By default it is always set to false
         [Required]
         public bool Status { get; set; } = false;
     }

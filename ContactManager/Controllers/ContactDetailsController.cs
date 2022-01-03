@@ -23,7 +23,8 @@ namespace ContactManager.Controllers
         {
             _contactService = ContactService;
         }
-        //Add Contact  
+        //Add Contact
+        ////Use body=>raw=>json to send the contact object as parameter
         [HttpPost("AddContact")]
         public ResponseModel AddContact([FromBody] Contact contact)
         {
@@ -53,7 +54,9 @@ namespace ContactManager.Controllers
             
             return responseModel;
         }
-        //Delete Contact  
+        //Delete Contact
+        //This will permanently delete the contact(remove row) from the table. 
+        //Use Query Params for sending the email parameter
         [HttpDelete("DeleteContact")]
         public ResponseModel DeleteContact(string Email)
         {
@@ -84,6 +87,10 @@ namespace ContactManager.Controllers
         }
 
         //Delete Contact By Status 
+        //Status means that the user is marked deleted or not
+        //By default it is always set to false
+        //This will mark the status as 1 which means that contact is inactive but doesn't remove it from the table.
+        //Use Query Params for sending the email parameter
         [HttpDelete("DeleteContactByStatus")]
         public ResponseModel DeleteContactByStatus(string Email)
         {
@@ -114,6 +121,7 @@ namespace ContactManager.Controllers
         }
 
         //Update Contact  
+        //Use body=>raw=>json to send the contact object as parameter
         [HttpPut("UpdateContact")]
         public ResponseModel UpdateContact(Contact Object)
         {
@@ -144,6 +152,7 @@ namespace ContactManager.Controllers
             return responseModel;
         }
         //GET Contact by Id  
+        //Use Query Params for sending the Id parameter
         [HttpGet("GetContactById")]
         public ResponseModel GetContactById(int Id)
         {
@@ -174,7 +183,8 @@ namespace ContactManager.Controllers
             return responseModel;
         }
 
-        //GET Contact by Email  
+        //GET Contact by Email
+        //Use Query Params for sending the email parameter
         [HttpGet("GetContactByEmail")]
         public ResponseModel GetContactByEmail(string Email)
         {
@@ -207,7 +217,8 @@ namespace ContactManager.Controllers
         }
 
 
-        //GET All Contacts  
+        //GET All Contacts
+        //This will display all the contacts(rows) from the table with status as false(means which are not marked as deleted).
         [HttpGet("GetAllContacts")]
         public ResponseModel GetAllContacts()
         {
